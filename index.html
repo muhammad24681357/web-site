@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Revox — Digital Agency crafting bold digital experiences. Web design, branding, and development." />
+  <title>Revox — Digital Agency</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Inline critical animation styles -->
+  <style>
+    /* Fade-up animation triggered by IntersectionObserver */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+    }
+    .fade-up.in-view { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    .service-card, .work-card, .testi-card, .process-step {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .service-card.in-view, .work-card.in-view, .testi-card.in-view, .process-step.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-card:nth-child(2).in-view { transition-delay: 0.1s; }
+    .service-card:nth-child(3).in-view { transition-delay: 0.2s; }
+    .service-card:nth-child(4).in-view { transition-delay: 0.05s; }
+    .service-card:nth-child(5).in-view { transition-delay: 0.15s; }
+    .service-card:nth-child(6).in-view { transition-delay: 0.25s; }
+
+    .testi-card:nth-child(2) { transition-delay: 0.1s; }
+    .testi-card:nth-child(3) { transition-delay: 0.2s; }
+
+    .process-step:nth-child(2) { transition-delay: 0.1s; }
+    .process-step:nth-child(3) { transition-delay: 0.2s; }
+    .process-step:nth-child(4) { transition-delay: 0.3s; }
+
+    .main-nav a.active { color: #BFF747; }
+    .main-nav a.active::after { width: 100%; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header id="site-header">
+    <div class="container">
+      <nav class="nav-inner">
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 19L11 3L19 19H14L11 13L8 19H3Z" fill="#060606"/>
+            </svg>
+          </div>
+          <span class="logo-text">Revox</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <ul class="main-nav">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#testimonials">Clients</a></li>
+        </ul>
+
+        <!-- Nav Right -->
+        <div class="nav-right">
+          <a href="#cta" class="btn-primary">
+            Let's Talk
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+          <button class="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="#hero">Home</a>
+    <a href="#services">Services</a>
+    <a href="#works">Works</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Clients</a>
+    <a href="#cta">Contact</a>
+    <div class="mobile-menu-footer">
+      <a href="mailto:hello@revox.agency">hello@revox.agency</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-bg-glow"></div>
+      <div class="container">
+        <div class="hero-content">
+
+          <!-- Left: Text -->
+          <div class="hero-left">
+            <div class="hero-kicker">Digital Creative Agency</div>
+
+            <h1 class="hero-headline">
+              We Build<br/>
+              <span class="accent">Bold</span><br/>
+              <span class="stroke">Digital</span><br/>
+              Worlds
+            </h1>
+
+            <p class="hero-desc">
+              Strategy, design, and development fused into one relentless pursuit — making your brand unforgettable on every screen.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#works" class="btn-primary">
+                View Our Work
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+              <a href="#about" class="play-btn">
+                <div class="play-icon">
+                  <svg viewBox="0 0 16 16"><polygon points="5,2 14,8 5,14" /></svg>
+                </div>
+                Our Story
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Stats -->
+          <div class="hero-right">
+            <div class="stat-card">
+              <div class="stat-num count-up" data-count="200" data-suffix="+">0+</div>
+              <div class="stat-label">Projects Delivered Globally</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num count-up" data-count="12" data-suffix="">0</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num count-up" data-count="98" data-suffix="%">0%</div>
+              <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num count-up" data-count="40" data-suffix="+">0+</div>
+              <div class="stat-label">Awards Won</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MARQUEE ===================== -->
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <span class="marquee-item"><span class="dot"></span> Branding</span>
+        <span class="marquee-item"><span class="dot"></span> Web Design</span>
+        <span class="marquee-item"><span class="dot"></span> Development</span>
+        <span class="marquee-item"><span class="dot"></span> UI / UX</span>
+        <span class="marquee-item"><span class="dot"></span> Motion</span>
+        <span class="marquee-item"><span class="dot"></span> Strategy</span>
+        <span class="marquee-item"><span class="dot"></span> SEO</span>
+        <span class="marquee-item"><span class="dot"></span> E-Commerce</span>
+        <span class="marquee-item"><span class="dot"></span> Mobile Apps</span>
+        <span class="marquee-item"><span class="dot"></span> Digital Marketing</span>
+      </div>
+    </div>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header d-flex justify-between align-center" style="flex-wrap:wrap; gap:20px;">
+          <div>
+            <div class="section-label">What We Do</div>
+            <h2 class="section-title">Services We<br/>Deliver</h2>
+          </div>
+          <p class="section-desc">
+            From concept to launch, we bring the right expertise to every stage of your digital journey.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="service-card">
+            <div class="service-num">01</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3 class="service-title">Web Design</h3>
+            <p class="service-text">Pixel-perfect interfaces that convert. We craft experiences your visitors will remember and return to.</p>
+            <a href="#works" class="service-link">
+              Explore
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">02</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <h3 class="service-title">Branding</h3>
+            <p class="service-text">Identity systems that speak before you do. Logos, guidelines, and brand worlds built to last.</p>
+            <a href="#works" class="service-link">
+              Explore
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">03</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="service-title">Development</h3>
+            <p class="service-text">Clean, scalable code powering fast and accessible websites — from landing pages to full platforms.</p>
+            <a href="#works" class="service-link">
+              Explore
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">04</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3 class="service-title">UI / UX Design</h3>
+            <p class="service-text">Research-backed, user-tested designs that reduce friction and guide people exactly where they need to go.</p>
+            <a href="#works" class="service-link">
+              Explore
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">05</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <h3 class="service-title">E-Commerce</h3>
+            <p class="service-text">Online stores built to sell — fast, beautiful, and optimised from first click to final checkout.</p>
+            <a href="#works" class="service-link">
+              Explore
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">06</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.87a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3 class="service-title">Digital Strategy</h3>
+            <p class="service-text">Data-driven plans that connect the right message to the right audience at the right moment.</p>
+            <a href="#works" class="service-link">
+              Explore
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORKS ===================== -->
+    <section id="works">
+      <div class="container">
+        <div class="works-header">
+          <div>
+            <div class="section-label">Portfolio</div>
+            <h2>Selected<br/>Works</h2>
+          </div>
+          <a href="#cta" class="btn-outline">
+            All Projects
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+
+        <div class="works-grid">
+
+          <!-- Work 1 – Featured -->
+          <div class="work-card">
+            <div class="work-thumb">
+              <div class="work-thumb-bg work-1">
+                <div class="work-thumb-icon">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="18" height="14" rx="2" stroke="#BFF747" stroke-width="1"/>
+                    <path d="M8 21h8M12 17v4" stroke="#BFF747" stroke-width="1"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="work-overlay">
+                <div class="work-tag">Branding & Web</div>
+                <h3 class="work-title">Luminary Finance — Complete Brand Identity</h3>
+                <p class="work-desc">Full-stack rebrand for a $2B fintech disruptor entering new markets across EMEA.</p>
+              </div>
+              <div class="work-arrow">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Work 2 -->
+          <div class="work-card">
+            <div class="work-thumb">
+              <div class="work-thumb-bg work-2">
+                <div class="work-thumb-icon">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="#BFF747" stroke-width="1"/>
+                    <path d="M12 3v9l5 5" stroke="#BFF747" stroke-width="1"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="work-overlay">
+                <div class="work-tag">UI / UX</div>
+                <h3 class="work-title">Noxa Health App</h3>
+                <p class="work-desc">Mobile-first platform redesign. 3× session time, 40% drop in support tickets.</p>
+              </div>
+              <div class="work-arrow">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Work 3 -->
+          <div class="work-card">
+            <div class="work-thumb">
+              <div class="work-thumb-bg work-3">
+                <div class="work-thumb-icon">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M3 3h18v18H3z" stroke="#BFF747" stroke-width="1"/>
+                    <path d="M3 9h18M9 3v18" stroke="#BFF747" stroke-width="1"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="work-overlay">
+                <div class="work-tag">E-Commerce</div>
+                <h3 class="work-title">Verdant Living Store</h3>
+                <p class="work-desc">Shopify overhaul delivering a 68% increase in conversion rate within 60 days.</p>
+              </div>
+              <div class="work-arrow">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Work 4 -->
+          <div class="work-card">
+            <div class="work-thumb">
+              <div class="work-thumb-bg work-4">
+                <div class="work-thumb-icon">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#BFF747" stroke-width="1"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="work-overlay">
+                <div class="work-tag">Web Design</div>
+                <h3 class="work-title">Arcadia Events Portal</h3>
+                <p class="work-desc">Bespoke booking platform and microsite system for a global events company.</p>
+              </div>
+              <div class="work-arrow">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+
+          <!-- Visual Side -->
+          <div class="about-visual fade-up">
+            <div class="about-img-wrap">
+              <div class="about-img-placeholder">
+                <div class="about-icon-large">
+                  <svg viewBox="0 0 100 100"><path d="M10 90L50 10L90 90H70L50 50L30 90H10Z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="about-badge">
+              <span class="about-badge-num">2012</span>
+              <span class="about-badge-label">Founded</span>
+            </div>
+          </div>
+
+          <!-- Content Side -->
+          <div class="about-content fade-up">
+            <div class="section-label">About Revox</div>
+            <h2>Built to Create. Driven to Perform.</h2>
+            <p>
+              We are a collective of designers, developers, and strategists with one obsession: turning ideas into digital experiences that move people and move markets.
+            </p>
+            <p>
+              Since 2012, we've partnered with startups and global brands across 30+ countries — each project a commitment to craft, clarity, and commercial impact.
+            </p>
+            <a href="#cta" class="btn-primary">
+              Work with Us
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <div class="about-stats">
+              <div class="about-stat">
+                <div class="about-stat-num count-up" data-count="200" data-suffix="+">0+</div>
+                <div class="about-stat-label">Projects</div>
+              </div>
+              <div class="about-stat">
+                <div class="about-stat-num count-up" data-count="30" data-suffix="+">0+</div>
+                <div class="about-stat-label">Countries</div>
+              </div>
+              <div class="about-stat">
+                <div class="about-stat-num count-up" data-count="40" data-suffix="+">0+</div>
+                <div class="about-stat-label">Awards</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section id="process">
+      <div class="container">
+        <div class="text-center fade-up">
+          <div class="section-label" style="justify-content:center;">How We Work</div>
+          <h2>Our Process</h2>
+        </div>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="process-num">01</div>
+            <h4 class="process-title">Discovery</h4>
+            <p class="process-text">We dig deep into your brand, audience, and goals to build a clear strategic foundation before a single pixel is placed.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">02</div>
+            <h4 class="process-title">Strategy</h4>
+            <p class="process-text">Mapping the full experience — user journeys, content strategy, and the KPIs that prove success.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">03</div>
+            <h4 class="process-title">Design & Build</h4>
+            <p class="process-text">Iterative design sprints with your team in the loop, followed by clean, tested, production-ready code.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">04</div>
+            <h4 class="process-title">Launch & Grow</h4>
+            <p class="process-text">We don't disappear at launch. Ongoing optimisation, analytics, and support keep results climbing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="text-center mb-60 fade-up">
+          <div class="section-label" style="justify-content:center;">Client Love</div>
+          <h2>What They Say</h2>
+        </div>
+
+        <div class="testimonials-grid">
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testi-text">"Revox didn't just redesign our website — they redesigned how we think about our digital presence. The results speak for themselves: 2× organic traffic within 90 days."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">SL</div>
+              <div>
+                <div class="testi-name">Sarah Lawson</div>
+                <div class="testi-role">CMO, Luminary Finance</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testi-text">"Working with Revox was the clearest, most professional agency experience I've had in 15 years of building products. They ask the right questions and then disappear to do exceptional work."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">MR</div>
+              <div>
+                <div class="testi-name">Marcus Rivera</div>
+                <div class="testi-role">Founder, Noxa Health</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testi-text">"Our e-commerce store went from invisible to indispensable. The Revox team understood our customer better than we did — and the new design proves it every single month."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">AK</div>
+              <div>
+                <div class="testi-name">Aisha Kowalczyk</div>
+                <div class="testi-role">CEO, Verdant Living</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section id="cta">
+      <div class="container">
+        <div class="cta-inner">
+          <div class="cta-text">
+            <h2>Ready to Build Something Bold?</h2>
+            <p>Let's talk about your project — no commitment, no fluff. Just a real conversation about what's possible.</p>
+          </div>
+          <a href="mailto:hello@revox.agency" class="btn-dark">
+            Start a Project
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+        <div class="cta-bg-text">REVOX</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-mark">
+              <svg viewBox="0 0 22 22" fill="none"><path d="M3 19L11 3L19 19H14L11 13L8 19H3Z" fill="#060606"/></svg>
+            </div>
+            <span class="footer-logo-text">Revox</span>
+          </div>
+          <p class="footer-desc">A digital agency obsessed with craft — building brands and experiences that outlast trends.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Dribbble">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Web Design</a></li>
+            <li><a href="#services">Branding</a></li>
+            <li><a href="#services">Development</a></li>
+            <li><a href="#services">UI / UX</a></li>
+            <li><a href="#services">E-Commerce</a></li>
+            <li><a href="#services">Strategy</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#works">Work</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#testimonials">Clients</a></li>
+            <li><a href="#cta">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@revox.agency">hello@revox.agency</a></li>
+            <li><a href="tel:+10000000000">+1 (000) 000-0000</a></li>
+            <li><a href="#">New York, NY</a></li>
+            <li><a href="#">London, UK</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">© 2025 <span>Revox Agency</span>. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scroll-top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
