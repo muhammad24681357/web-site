@@ -354,6 +354,12 @@ section { padding: 100px 0; }
   align-items: center;
 }
 
+.hero-top {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 46px;
+}
+
 .hero-left {}
 
 .hero-kicker {
@@ -365,7 +371,7 @@ section { padding: 100px 0; }
   text-transform: none;
   letter-spacing: 0.3px;
   white-space: nowrap;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 
 .hero-headline {
@@ -386,9 +392,10 @@ section { padding: 100px 0; }
 }
 
 .hero-headline--copy {
-  font-size: clamp(38px, 4.4vw, 68px);
+  font-size: clamp(40px, 5.2vw, 78px);
   white-space: normal;
-  line-height: 1.18;
+  line-height: 1.16;
+  margin-bottom: 0;
 }
 @media (max-width: 640px) {
   .hero-headline--copy { font-size: clamp(32px, 9vw, 46px); line-height: 1.2; }
@@ -410,7 +417,7 @@ section { padding: 100px 0; }
 
 .hero-desc {
   font-family: 'Manrope', sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.85;
   color: var(--text);
   max-width: 480px;
@@ -1176,7 +1183,10 @@ footer {
   .work-card:nth-child(1) { grid-column: span 1; aspect-ratio: 16/10; }
   .services-grid { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr 1fr; }
-  .testi-card { flex-basis: 78vw; padding: 28px 24px; }
+  .testi-card { flex-basis: 78vw; padding: 20px 20px; }
+  .testi-stars { margin-bottom: 12px; }
+  .testi-text { font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+  .testi-avatar { width: 38px; height: 38px; }
   .testi-track { animation-duration: 34s; }
   .cta-inner { flex-direction: column; text-align: center; }
   .results-bar-inner { gap: 24px 0; }
@@ -1196,7 +1206,7 @@ footer {
   .hero-kicker { margin-bottom: 20px; }
   .hero-headline--copy { font-size: clamp(28px, 8.5vw, 40px); line-height: 1.22; margin-bottom: 18px; }
   .hero-eyebrow-line { margin: 16px 0 14px; }
-  .hero-desc { font-size: 16px; line-height: 1.75; margin-bottom: 32px; }
+  .hero-desc { font-size: 17px; line-height: 1.75; margin-bottom: 32px; }
   .hero-right { gap: 10px; }
   .stat-card { padding: 18px 14px; border-radius: 14px; }
   .stat-num { font-size: 32px; }
@@ -1248,6 +1258,17 @@ footer {
       will-change: opacity, filter, transform;
     }
     .reveal-words.words-visible .w { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+    /* Hero description: each word is revealed individually as the visitor
+       scrolls, rather than all at once — starts dim (not hidden) and
+       brightens smoothly, a calmer, slower "typing" feel */
+    .hero-desc-reveal.reveal-words .w {
+      opacity: 0.4;
+      filter: none;
+      transform: none;
+      transition: opacity .9s cubic-bezier(.19,1,.22,1);
+    }
+    .hero-desc-reveal.reveal-words .w.visible { opacity: 1; }
 
     /* ---- Services: soft green light drifting inside each card ---- */
     .service-card > * { position: relative; z-index: 1; }
@@ -1340,14 +1361,15 @@ footer {
       <div class="hero-bg-grid"></div>
       <div class="hero-bg-glow"></div>
       <div class="container">
+        <div class="hero-top">
+          <div class="hero-kicker">Shopify Experts &middot; Better Stores &middot; Real Results</div>
+          <h1 class="hero-headline hero-headline--copy">
+            What If One Change Could Add<br/>
+            <span class="accent">EGP 100K</span> <span class="stroke">In Monthly Sales?</span>
+          </h1>
+        </div>
         <div class="hero-content">
           <div class="hero-left" id="hero-left-panel">
-            <div class="hero-kicker">Shopify Experts &middot; Better Stores &middot; Real Results</div>
-            <h1 class="hero-headline hero-headline--copy">
-              What If One Change<br/>
-              Could Add <span class="accent">EGP 100K</span><br/>
-              <span class="stroke">In Monthly Sales?</span>
-            </h1>
             <p class="hero-eyebrow-line">We&rsquo;ve done it dozens of times this year.</p>
             <p class="hero-desc hero-desc-reveal">
               Your store should do more than look good. It should <span class="hero-desc-highlight">sell</span>.
@@ -2077,8 +2099,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.reveal-words').forEach(function (el) { el.classList.add('words-visible'); });
   }
 
-  // ---- Hero description: word-by-word reveal, like it's being typed in,
-  // starting the moment the visitor begins to scroll ----
+  // ---- Hero description: word-by-word reveal that tracks scroll position,
+  // like the text is being typed in as the visitor scrolls down (calm, slow) ----
   var heroDescEl = document.querySelector('.hero-desc-reveal');
   if (heroDescEl) {
     (function split(node) {
@@ -2101,20 +2123,28 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     })(heroDescEl);
     heroDescEl.classList.add('reveal-words');
-    heroDescEl.querySelectorAll('.w').forEach(function (w, i) {
-      w.style.transitionDelay = Math.min(i * 0.045, 1.1) + 's';
-    });
+    var heroDescWords = Array.prototype.slice.call(heroDescEl.querySelectorAll('.w'));
 
-    var heroDescRevealed = false;
-    var revealHeroDesc = function () {
-      if (heroDescRevealed) return;
-      if ((window.scrollY || window.pageYOffset || 0) > 15) {
-        heroDescRevealed = true;
-        heroDescEl.classList.add('words-visible');
-        window.removeEventListener('scroll', revealHeroDesc);
-      }
+    var heroDescRange = 480; // px of scroll over which all words finish appearing
+    var heroDescTicking = false;
+    var updateHeroDescReveal = function () {
+      var y = window.scrollY || window.pageYOffset || 0;
+      var progress = Math.min(Math.max(y / heroDescRange, 0), 1);
+      var revealCount = Math.round(progress * heroDescWords.length);
+      heroDescWords.forEach(function (w, i) {
+        if (i < revealCount) { w.classList.add('visible'); }
+        else { w.classList.remove('visible'); }
+      });
+      heroDescTicking = false;
     };
-    window.addEventListener('scroll', revealHeroDesc, { passive: true });
+    updateHeroDescReveal();
+    window.addEventListener('scroll', function () {
+      if (!heroDescTicking) {
+        window.requestAnimationFrame(updateHeroDescReveal);
+        heroDescTicking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateHeroDescReveal);
   }
 
 });
