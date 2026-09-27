@@ -7,7 +7,7 @@
   <title>Mohamed Salem — Shopify Design &amp; Conversion Optimisation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=Kanit:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&family=Kaushan+Script&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=Kanit:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&family=Kaushan+Script&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
 /* ============================================
    REVOX - Digital Agency Theme CSS
@@ -357,22 +357,15 @@ section { padding: 100px 0; }
 .hero-left {}
 
 .hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+  display: block;
   color: var(--theme);
   font-family: 'Kaushan Script', cursive;
-  font-size: 18px;
+  font-size: clamp(11px, 3.6vw, 18px);
   font-weight: 400;
   text-transform: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
   margin-bottom: 30px;
-}
-.hero-kicker::before {
-  content: '';
-  width: 40px; height: 1px;
-  background: var(--theme);
-  flex-shrink: 0;
 }
 
 .hero-headline {
@@ -416,8 +409,9 @@ section { padding: 100px 0; }
 }
 
 .hero-desc {
-  font-size: 16px;
-  line-height: 1.8;
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  line-height: 1.85;
   color: var(--text);
   max-width: 480px;
   margin-bottom: 44px;
@@ -455,6 +449,7 @@ section { padding: 100px 0; }
 .hero-right {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
   gap: 16px;
 }
 
@@ -1173,7 +1168,7 @@ footer {
   .nav-inner { padding: 12px 0; }
   #hero { padding-top: 116px; padding-bottom: 60px; }
   .hero-headline { font-size: clamp(40px, 11.5vw, 84px); line-height: 0.95; }
-  .hero-kicker { font-size: 16px; }
+  .hero-headline--copy { line-height: 1.16; margin-bottom: 22px; }
   .hero-right { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .stat-card { padding: 22px 18px; }
   .stat-num { font-size: clamp(34px, 9vw, 48px); }
@@ -1198,8 +1193,10 @@ footer {
   #site-header { top: 10px; left: 10px; right: 10px; padding: 0 14px; }
   .logo-mark { width: 38px; height: 38px; }
   #hero { padding-top: 106px; }
-  .hero-kicker { font-size: 15px; letter-spacing: 0.3px; margin-bottom: 22px; }
-  .hero-desc { font-size: 15px; margin-bottom: 32px; }
+  .hero-kicker { margin-bottom: 20px; }
+  .hero-headline--copy { font-size: clamp(28px, 8.5vw, 40px); line-height: 1.22; margin-bottom: 18px; }
+  .hero-eyebrow-line { margin: 16px 0 14px; }
+  .hero-desc { font-size: 16px; line-height: 1.75; margin-bottom: 32px; }
   .hero-right { gap: 10px; }
   .stat-card { padding: 18px 14px; border-radius: 14px; }
   .stat-num { font-size: 32px; }
@@ -1352,7 +1349,7 @@ footer {
               <span class="stroke">In Monthly Sales?</span>
             </h1>
             <p class="hero-eyebrow-line">We&rsquo;ve done it dozens of times this year.</p>
-            <p class="hero-desc">
+            <p class="hero-desc hero-desc-reveal">
               Your store should do more than look good. It should <span class="hero-desc-highlight">sell</span>.
               We help brands build better Shopify stores that turn visitors into customers and drive more sales.
               From design and user experience to product pages and checkout, we improve every part of your store
@@ -2078,6 +2075,46 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.reveal-words').forEach(function (el) { headObserver.observe(el); });
   } else {
     document.querySelectorAll('.reveal-words').forEach(function (el) { el.classList.add('words-visible'); });
+  }
+
+  // ---- Hero description: word-by-word reveal, like it's being typed in,
+  // starting the moment the visitor begins to scroll ----
+  var heroDescEl = document.querySelector('.hero-desc-reveal');
+  if (heroDescEl) {
+    (function split(node) {
+      Array.from(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var parts = child.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var w = document.createElement('span');
+            w.className = 'w';
+            w.textContent = p;
+            frag.appendChild(w);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1 && child.tagName !== 'BR') {
+          split(child);
+        }
+      });
+    })(heroDescEl);
+    heroDescEl.classList.add('reveal-words');
+    heroDescEl.querySelectorAll('.w').forEach(function (w, i) {
+      w.style.transitionDelay = Math.min(i * 0.045, 1.1) + 's';
+    });
+
+    var heroDescRevealed = false;
+    var revealHeroDesc = function () {
+      if (heroDescRevealed) return;
+      if ((window.scrollY || window.pageYOffset || 0) > 15) {
+        heroDescRevealed = true;
+        heroDescEl.classList.add('words-visible');
+        window.removeEventListener('scroll', revealHeroDesc);
+      }
+    };
+    window.addEventListener('scroll', revealHeroDesc, { passive: true });
   }
 
 });
