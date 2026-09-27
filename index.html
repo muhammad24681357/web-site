@@ -522,6 +522,222 @@ section { padding: 100px 0; }
 }
 
 /* ==============================================
+   SCROLL GALLERY
+   ============================================== */
+.scroll-gallery {
+  background: var(--bg);
+  padding: 90px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-gallery-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  height: 640px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fade masks top & bottom */
+.scroll-gallery-inner::before,
+.scroll-gallery-inner::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 140px;
+  z-index: 10;
+  pointer-events: none;
+}
+.scroll-gallery-inner::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+}
+.scroll-gallery-inner::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+}
+
+.gallery-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  will-change: transform;
+}
+
+.gallery-col--up {
+  animation: galleryScrollUp 22s linear infinite;
+}
+.gallery-col--down {
+  animation: galleryScrollDown 26s linear infinite;
+}
+.gallery-col--up2 {
+  animation: galleryScrollUp 30s linear infinite;
+}
+
+@keyframes galleryScrollUp {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+@keyframes galleryScrollDown {
+  0%   { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-col { animation: none !important; }
+}
+
+.gallery-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+  position: relative;
+  background: var(--bg2);
+  transition: border-color .3s, transform .3s;
+}
+.gallery-card:hover {
+  border-color: rgba(191,247,71,0.22);
+  transform: scale(1.02);
+}
+
+.gallery-card img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 9/16;
+}
+
+/* Fallback mock screens when no real images */
+.gallery-card-mock {
+  width: 100%;
+  aspect-ratio: 9/16;
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.mock-bar {
+  height: 38px;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.mock-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.mock-dot:nth-child(1) { background: #ff5f56; }
+.mock-dot:nth-child(2) { background: #ffbd2e; }
+.mock-dot:nth-child(3) { background: #27c93f; }
+.mock-url {
+  flex: 1;
+  height: 22px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  margin-left: 8px;
+}
+.mock-body {
+  flex: 1;
+  padding: 18px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mock-hero-block {
+  width: 100%; height: 90px;
+  border-radius: 8px;
+}
+.mock-tag {
+  height: 10px; border-radius: 3px; width: 55%;
+  background: rgba(191,247,71,0.18);
+}
+.mock-h { height: 14px; border-radius: 4px; background: rgba(255,255,255,0.12); }
+.mock-h.short { width: 72%; }
+.mock-h.med   { width: 88%; }
+.mock-h.long  { width: 100%; }
+.mock-p { height: 8px; border-radius: 3px; background: rgba(255,255,255,0.06); }
+.mock-p.s70 { width: 70%; }
+.mock-p.s85 { width: 85%; }
+.mock-p.s60 { width: 60%; }
+.mock-btn {
+  height: 28px; width: 100px; border-radius: 6px;
+  background: var(--theme);
+  margin-top: 6px;
+}
+.mock-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+.mock-card-sm {
+  height: 48px; border-radius: 6px;
+  background: rgba(255,255,255,0.05);
+}
+.mock-label {
+  font-family: 'Kanit', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--theme);
+  opacity: 0.9;
+  padding: 4px 0 2px;
+}
+.mock-pill {
+  display: inline-block;
+  height: 20px; width: 70px;
+  border-radius: 20px;
+  background: rgba(191,247,71,0.12);
+  border: 1px solid rgba(191,247,71,0.2);
+}
+.mock-nav-row {
+  display: flex; gap: 8px; margin-top: auto;
+}
+.mock-nav-item {
+  flex: 1; height: 10px; border-radius: 3px;
+  background: rgba(255,255,255,0.07);
+}
+
+/* Color accents per card variant */
+.mock-v1 .mock-hero-block { background: linear-gradient(135deg, #1a2a1a 0%, #2d4a0a 100%); }
+.mock-v2 .mock-hero-block { background: linear-gradient(135deg, #1a1a2a 0%, #2a1a3a 100%); }
+.mock-v3 .mock-hero-block { background: linear-gradient(135deg, #2a1a10 0%, #3a2510 100%); }
+.mock-v4 .mock-hero-block { background: linear-gradient(135deg, #101a2a 0%, #1a2a3a 100%); }
+.mock-v5 .mock-hero-block { background: linear-gradient(135deg, #1a1a1a 0%, #2a3a1a 100%); }
+.mock-v6 .mock-hero-block { background: linear-gradient(135deg, #2a1a20 0%, #1a0a15 100%); }
+.mock-v7 .mock-hero-block { background: linear-gradient(135deg, #0a1a2a 0%, #1a3a2a 100%); }
+.mock-v8 .mock-hero-block { background: linear-gradient(135deg, #1a2a0a 0%, #2a3a10 100%); }
+.mock-v9 .mock-hero-block { background: linear-gradient(135deg, #2a0a1a 0%, #3a1a2a 100%); }
+
+/* Mobile: 1 col, no animation */
+@media (max-width: 640px) {
+  .scroll-gallery-inner {
+    grid-template-columns: 1fr;
+    height: 420px;
+    gap: 12px;
+  }
+  .gallery-col--down,
+  .gallery-col--up2 {
+    display: none;
+  }
+  .gallery-col--up {
+    animation-duration: 18s;
+  }
+}
+
+/* Tablet: 2 cols */
+@media (min-width: 641px) and (max-width: 900px) {
+  .scroll-gallery-inner {
+    grid-template-columns: 1fr 1fr;
+    height: 520px;
+  }
+  .gallery-col--up2 {
+    display: none;
+  }
+}
+
+/* ==============================================
    SERVICES
    ============================================== */
 #services { background: var(--body); }
@@ -1471,6 +1687,267 @@ footer {
         <span class="marquee-item"><span class="dot"></span> Digital Marketing</span>
       </div>
     </div>
+
+    <!-- ===================== SCROLL GALLERY ===================== -->
+    <section class="scroll-gallery">
+      <div class="container" style="margin-bottom:50px;">
+        <div class="section-label" style="margin-bottom:14px;">Our Work</div>
+        <h2 class="section-title" style="max-width:420px;">Stores We've<br/>Built &amp; Scaled</h2>
+      </div>
+
+      <div class="scroll-gallery-inner">
+
+        <!-- Column 1: scrolls UP -->
+        <div class="gallery-col gallery-col--up">
+          <!-- set 1 -->
+          <div class="gallery-card"><div class="gallery-card-mock mock-v1">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Fashion Store</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-tag"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-h med"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-p s70"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v4">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Perfume</div>
+              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-p s60"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v7">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Cosmetics</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-pill"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <!-- set 2 (duplicate for seamless loop) -->
+          <div class="gallery-card"><div class="gallery-card-mock mock-v1">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Fashion Store</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-tag"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-h med"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-p s70"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v4">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Perfume</div>
+              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-p s60"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v7">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Cosmetics</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-pill"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- Column 2: scrolls DOWN (center) -->
+        <div class="gallery-col gallery-col--down">
+          <!-- set 1 -->
+          <div class="gallery-card"><div class="gallery-card-mock mock-v2">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Abaya &amp; Modest</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
+              <div class="mock-p s70"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v5">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Kids Fashion</div>
+              <div class="mock-pill"></div>
+              <div class="mock-hero-block" style="margin-top:8px;"></div>
+              <div class="mock-h med"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-p s60"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v8">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Accessories</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-tag"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <!-- set 2 duplicate -->
+          <div class="gallery-card"><div class="gallery-card-mock mock-v2">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Abaya &amp; Modest</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
+              <div class="mock-p s70"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v5">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Kids Fashion</div>
+              <div class="mock-pill"></div>
+              <div class="mock-hero-block" style="margin-top:8px;"></div>
+              <div class="mock-h med"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-p s60"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v8">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Accessories</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-tag"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- Column 3: scrolls UP slower -->
+        <div class="gallery-col gallery-col--up2">
+          <!-- set 1 -->
+          <div class="gallery-card"><div class="gallery-card-mock mock-v3">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Kitchen &amp; Home</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
+              <div class="mock-h med"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v6">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Beauty</div>
+              <div class="mock-tag"></div>
+              <div class="mock-hero-block" style="margin-top:6px;"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-p s70"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-pill"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v9">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Sportswear</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
+              <div class="mock-p s60"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <!-- set 2 duplicate -->
+          <div class="gallery-card"><div class="gallery-card-mock mock-v3">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Kitchen &amp; Home</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
+              <div class="mock-h med"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v6">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Beauty</div>
+              <div class="mock-tag"></div>
+              <div class="mock-hero-block" style="margin-top:6px;"></div>
+              <div class="mock-h long"></div>
+              <div class="mock-p s70"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-pill"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+
+          <div class="gallery-card"><div class="gallery-card-mock mock-v9">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
+            <div class="mock-body">
+              <div class="mock-label">Sportswear</div>
+              <div class="mock-hero-block"></div>
+              <div class="mock-h short"></div>
+              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
+              <div class="mock-p s60"></div>
+              <div class="mock-p s85"></div>
+              <div class="mock-btn"></div>
+            </div>
+          </div></div>
+        </div>
+
+      </div>
+    </section>
 
     <!-- ===================== SERVICES ===================== -->
     <section id="services">
