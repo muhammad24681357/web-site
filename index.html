@@ -710,30 +710,45 @@ section { padding: 100px 0; }
 .mock-v8 .mock-hero-block { background: linear-gradient(135deg, #1a2a0a 0%, #2a3a10 100%); }
 .mock-v9 .mock-hero-block { background: linear-gradient(135deg, #2a0a1a 0%, #3a1a2a 100%); }
 
-/* Mobile: 1 col, no animation */
-@media (max-width: 640px) {
+/* Tablet: keep 3 cols, slightly shorter */
+@media (min-width: 641px) and (max-width: 900px) {
   .scroll-gallery-inner {
-    grid-template-columns: 1fr;
-    height: 420px;
+    height: 520px;
     gap: 12px;
-  }
-  .gallery-col--down,
-  .gallery-col--up2 {
-    display: none;
-  }
-  .gallery-col--up {
-    animation-duration: 18s;
   }
 }
 
-/* Tablet: 2 cols */
-@media (min-width: 641px) and (max-width: 900px) {
+/* Mobile: still 3 cols, just smaller/faster */
+@media (max-width: 640px) {
   .scroll-gallery-inner {
-    grid-template-columns: 1fr 1fr;
-    height: 520px;
+    grid-template-columns: repeat(3, 1fr);
+    height: 360px;
+    gap: 8px;
+  }
+  .gallery-col {
+    gap: 8px;
+  }
+  .gallery-card {
+    border-radius: 8px;
+  }
+  .gallery-col--up {
+    animation-duration: 16s;
+  }
+  .gallery-col--down {
+    animation-duration: 19s;
   }
   .gallery-col--up2 {
-    display: none;
+    animation-duration: 22s;
+  }
+}
+
+@media (max-width: 420px) {
+  .scroll-gallery-inner {
+    height: 300px;
+    gap: 6px;
+  }
+  .gallery-col {
+    gap: 6px;
   }
 }
 
@@ -1700,250 +1715,52 @@ footer {
         <!-- Column 1: scrolls UP -->
         <div class="gallery-col gallery-col--up">
           <!-- set 1 -->
-          <div class="gallery-card"><div class="gallery-card-mock mock-v1">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Fashion Store</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-tag"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-h med"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-p s70"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v4">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Perfume</div>
-              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-p s60"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v7">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Cosmetics</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-pill"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
           <!-- set 2 (duplicate for seamless loop) -->
-          <div class="gallery-card"><div class="gallery-card-mock mock-v1">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Fashion Store</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-tag"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-h med"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-p s70"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v4">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Perfume</div>
-              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-p s60"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v7">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Cosmetics</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-pill"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
         </div>
 
         <!-- Column 2: scrolls DOWN (center) -->
         <div class="gallery-col gallery-col--down">
           <!-- set 1 -->
-          <div class="gallery-card"><div class="gallery-card-mock mock-v2">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Abaya &amp; Modest</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
-              <div class="mock-p s70"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v5">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Kids Fashion</div>
-              <div class="mock-pill"></div>
-              <div class="mock-hero-block" style="margin-top:8px;"></div>
-              <div class="mock-h med"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-p s60"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v8">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Accessories</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-tag"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <!-- set 2 duplicate -->
-          <div class="gallery-card"><div class="gallery-card-mock mock-v2">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Abaya &amp; Modest</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
-              <div class="mock-p s70"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <!-- set 2 (duplicate for seamless loop) -->
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v5">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Kids Fashion</div>
-              <div class="mock-pill"></div>
-              <div class="mock-hero-block" style="margin-top:8px;"></div>
-              <div class="mock-h med"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-p s60"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v8">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Accessories</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-tag"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
         </div>
 
         <!-- Column 3: scrolls UP slower -->
         <div class="gallery-col gallery-col--up2">
           <!-- set 1 -->
-          <div class="gallery-card"><div class="gallery-card-mock mock-v3">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Kitchen &amp; Home</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
-              <div class="mock-h med"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v6">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Beauty</div>
-              <div class="mock-tag"></div>
-              <div class="mock-hero-block" style="margin-top:6px;"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-p s70"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-pill"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v9">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Sportswear</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
-              <div class="mock-p s60"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <!-- set 2 duplicate -->
-          <div class="gallery-card"><div class="gallery-card-mock mock-v3">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Kitchen &amp; Home</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-grid"><div class="mock-card-sm"></div><div class="mock-card-sm"></div></div>
-              <div class="mock-h med"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <!-- set 2 (duplicate for seamless loop) -->
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v6">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Beauty</div>
-              <div class="mock-tag"></div>
-              <div class="mock-hero-block" style="margin-top:6px;"></div>
-              <div class="mock-h long"></div>
-              <div class="mock-p s70"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-pill"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/dora.jpg" alt="Dora — Shopify modest-fashion store built by Mohamed Salem" loading="lazy" /></div>
 
-          <div class="gallery-card"><div class="gallery-card-mock mock-v9">
-            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><div class="mock-url"></div></div>
-            <div class="mock-body">
-              <div class="mock-label">Sportswear</div>
-              <div class="mock-hero-block"></div>
-              <div class="mock-h short"></div>
-              <div class="mock-nav-row"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
-              <div class="mock-p s60"></div>
-              <div class="mock-p s85"></div>
-              <div class="mock-btn"></div>
-            </div>
-          </div></div>
+          <div class="gallery-card"><img src="images/cottolight.jpg" alt="Cottolight — Shopify fashion store built by Mohamed Salem" loading="lazy" /></div>
         </div>
 
       </div>
