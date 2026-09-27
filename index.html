@@ -7,7 +7,7 @@
   <title>Mohamed Salem — Shopify Design &amp; Conversion Optimisation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=Kanit:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=Kanit:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&family=Kaushan+Script&display=swap" rel="stylesheet" />
   <style>
 /* ============================================
    REVOX - Digital Agency Theme CSS
@@ -360,16 +360,18 @@ section { padding: 100px 0; }
   align-items: center;
   gap: 12px;
   color: var(--theme);
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.5px;
   margin-bottom: 30px;
 }
 .hero-kicker::before {
   content: '';
   width: 40px; height: 1px;
   background: var(--theme);
+  flex-shrink: 0;
 }
 
 .hero-headline {
@@ -379,6 +381,9 @@ section { padding: 100px 0; }
   white-space: nowrap;
   margin-bottom: 30px;
   color: var(--white);
+}
+@media (max-width: 1280px) {
+  .hero-headline { white-space: normal; }
 }
 .hero-headline .accent { color: var(--theme); }
 .hero-headline .stroke {
@@ -1143,9 +1148,10 @@ footer {
   .nav-inner { padding: 12px 0; }
   #hero { padding-top: 116px; padding-bottom: 60px; }
   .hero-headline { font-size: clamp(40px, 11.5vw, 84px); line-height: 0.95; }
+  .hero-kicker { font-size: 16px; }
   .hero-right { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .stat-card { padding: 24px 20px; }
-  .stat-num { font-size: clamp(40px, 10vw, 52px); }
+  .stat-card { padding: 22px 18px; }
+  .stat-num { font-size: clamp(34px, 9vw, 48px); }
   .works-grid { grid-template-columns: 1fr; }
   .work-card:nth-child(1) { grid-column: span 1; aspect-ratio: 16/10; }
   .services-grid { grid-template-columns: 1fr; }
@@ -1167,12 +1173,12 @@ footer {
   #site-header { top: 10px; left: 10px; right: 10px; padding: 0 14px; }
   .logo-mark { width: 38px; height: 38px; }
   #hero { padding-top: 106px; }
-  .hero-kicker { letter-spacing: 3px; font-size: 11px; margin-bottom: 22px; }
+  .hero-kicker { font-size: 15px; letter-spacing: 0.3px; margin-bottom: 22px; }
   .hero-desc { font-size: 15px; margin-bottom: 32px; }
   .hero-right { gap: 10px; }
-  .stat-card { padding: 20px 16px; border-radius: 14px; }
-  .stat-num { font-size: 40px; }
-  .stat-label { font-size: 11px; letter-spacing: .6px; line-height: 1.5; }
+  .stat-card { padding: 18px 14px; border-radius: 14px; }
+  .stat-num { font-size: 32px; }
+  .stat-label { font-size: 10px; letter-spacing: .5px; line-height: 1.5; }
   .logo-text { font-size: 17px; letter-spacing: 1px; }
   .process-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr 1fr; }
