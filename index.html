@@ -392,6 +392,29 @@ section { padding: 100px 0; }
   color: transparent;
 }
 
+.hero-headline--copy {
+  font-size: clamp(38px, 4.4vw, 68px);
+  white-space: normal;
+  line-height: 1.18;
+}
+@media (max-width: 640px) {
+  .hero-headline--copy { font-size: clamp(32px, 9vw, 46px); line-height: 1.2; }
+}
+
+.hero-eyebrow-line {
+  font-family: 'Kanit', sans-serif;
+  font-size: clamp(16px, 1.6vw, 19px);
+  font-weight: 500;
+  color: var(--white);
+  opacity: 0.92;
+  margin: 22px 0 18px;
+  line-height: 1.4;
+}
+.hero-desc-highlight {
+  color: var(--theme);
+  font-weight: 600;
+}
+
 .hero-desc {
   font-size: 16px;
   line-height: 1.8;
@@ -399,6 +422,7 @@ section { padding: 100px 0; }
   max-width: 480px;
   margin-bottom: 44px;
 }
+.hero-desc strong { color: var(--white); font-weight: 600; }
 
 .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 
@@ -1321,15 +1345,18 @@ footer {
       <div class="container">
         <div class="hero-content">
           <div class="hero-left" id="hero-left-panel">
-            <div class="hero-kicker">Shopify Designer &amp; CRO Specialist</div>
-            <h1 class="hero-headline">
-              I Design<br/>
-              <span class="accent">Shopify</span><br/>
-              <span class="stroke">Stores That</span><br/>
-              Convert
+            <div class="hero-kicker">Shopify Experts &middot; Better Stores &middot; Real Results</div>
+            <h1 class="hero-headline hero-headline--copy">
+              What If One Change<br/>
+              Could Add <span class="accent">EGP 100K</span><br/>
+              <span class="stroke">In Monthly Sales?</span>
             </h1>
+            <p class="hero-eyebrow-line">We&rsquo;ve done it dozens of times this year.</p>
             <p class="hero-desc">
-              I design and optimise Shopify stores around one goal: turning more of your existing traffic into revenue. Customer research, conversion-focused design and continuous A/B testing — built to lift your conversion rate, average order value and revenue per visitor.
+              Your store should do more than look good. It should <span class="hero-desc-highlight">sell</span>.
+              We help brands build better Shopify stores that turn visitors into customers and drive more sales.
+              From design and user experience to product pages and checkout, we improve every part of your store
+              with one goal: <strong>more customers, more sales, more growth.</strong>
             </p>
             <div class="hero-actions">
               <a href="#works" class="btn-primary">
